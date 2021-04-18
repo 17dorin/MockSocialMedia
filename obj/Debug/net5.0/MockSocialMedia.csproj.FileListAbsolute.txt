@@ -83,3 +83,4 @@ C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\MockSocialMedia.dll
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\ref\MockSocialMedia.dll
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\MockSocialMedia.pdb
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\MockSocialMedia.genruntimeconfig.cache
+C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Post\Index.cshtml.g.cs

@@ -45,6 +45,6 @@ namespace MockSocialMedia.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
     }
 }

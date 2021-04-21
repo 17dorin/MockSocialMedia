@@ -60,5 +60,17 @@ namespace MockSocialMedia.Controllers
             return View("SearchResults", matchingProfiles);
         }
 
+        public async Task<IActionResult> FollowUser(string id)
+        {
+            FollowedUser u = new FollowedUser();
+            u.UserToFollow = id;
+            u.FollowingUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            _context.FollowedUsers.Add(u);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

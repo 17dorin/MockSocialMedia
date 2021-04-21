@@ -5,6 +5,7 @@
     foreach(ProfileViewModel p in Model)
     {
         <p>@p.Username</p>
+        <a asp-controller="Profile" asp-action="FollowUser" asp-route-id="@p.Id">Follow</a>
     }
 }
 else

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MockSocialMedia.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MockSocialMedia.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly MockSocialMediaContext _context;
@@ -34,6 +36,28 @@ namespace MockSocialMedia.Controllers
             }
 
             return View(pvms);
+        }
+
+        public IActionResult SearchUsers()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SearchUsers(string keyword)
+        {
+            //Gets list of users matching the keyword from the search view. Basic contains search right now, could be altered/refined
+            List<AspNetUser> matchingUsers = _context.AspNetUsers.Where(x => x.NormalizedUserName.Contains(keyword) 
+                                                                                  && x.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value.ToUpper()).ToList();
+            //Converts list of AspNetUser objects into ProfileViewModels
+            List<ProfileViewModel> matchingProfiles = new List<ProfileViewModel>();
+            foreach(AspNetUser a in matchingUsers)
+            {
+                ProfileViewModel pvm = new ProfileViewModel(a);
+                matchingProfiles.Add(pvm);
+            }
+
+            return View("SearchResults", matchingProfiles);
         }
 
     }

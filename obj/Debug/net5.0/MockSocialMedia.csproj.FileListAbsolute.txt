@@ -86,3 +86,5 @@ C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\MockSocialMedia.gen
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Post\Index.cshtml.g.cs
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Post\CreatePost.cshtml.g.cs
 C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Profile\Index.cshtml.g.cs
+C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Profile\SearchResults.cshtml.g.cs
+C:\Users\17dor\source\repos\MockSocialMedia\obj\Debug\net5.0\Razor\Views\Profile\SearchUsers.cshtml.g.cs

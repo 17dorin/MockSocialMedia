@@ -72,5 +72,17 @@ namespace MockSocialMedia.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> UnfollowUser(string id)
+        {
+            //Gets the FollowedUser object based off the the Id sent back from the Index view 
+            List<FollowedUser> userToUnfollow = _context.FollowedUsers.Where(x => x.FollowingUser == User.FindFirst(ClaimTypes.NameIdentifier).Value
+                                                                                                && x.UserToFollow == id).ToList();
+
+            _context.FollowedUsers.Remove(userToUnfollow[0]);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

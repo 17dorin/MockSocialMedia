@@ -49,10 +49,29 @@ namespace MockSocialMedia.Controllers
             //Gets list of users matching the keyword from the search view. Basic contains search right now, could be altered/refined
             List<AspNetUser> matchingUsers = _context.AspNetUsers.Where(x => x.NormalizedUserName.Contains(keyword) 
                                                                                   && x.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value.ToUpper()).ToList();
+
+            //Remove users already followed from search results
+            List<string> followedUsers = _context.FollowedUsers.Where(x => x.FollowingUser == User.FindFirst(ClaimTypes.NameIdentifier).Value).Select(x => x.UserToFollow).ToList();
+
+            List<AspNetUser> usersToRemove = new List<AspNetUser>();
+            foreach(AspNetUser a in matchingUsers)
+            {
+                if(followedUsers.Contains(a.Id))
+                {
+                    usersToRemove.Add(a);
+                }
+            }
+
+            foreach(AspNetUser a in usersToRemove)
+            {
+                matchingUsers.Remove(a);
+            }
+
             //Converts list of AspNetUser objects into ProfileViewModels
             List<ProfileViewModel> matchingProfiles = new List<ProfileViewModel>();
             foreach(AspNetUser a in matchingUsers)
             {
+                
                 ProfileViewModel pvm = new ProfileViewModel(a);
                 matchingProfiles.Add(pvm);
             }

@@ -46,5 +46,19 @@ namespace MockSocialMedia.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ConfirmDeletePost(int postToDelete)
+        {
+            Post p = (Post) _context.Posts.Where(x => x.Id == postToDelete).FirstOrDefault();
+            return View(p);
+        }
+
+        public async Task<IActionResult> DeletePost(int postToDelete)
+        {
+            Post p = (Post) _context.Posts.Where(x => x.Id == postToDelete).FirstOrDefault();
+            _context.Posts.Remove(p);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }

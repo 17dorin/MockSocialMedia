@@ -11,6 +11,7 @@ namespace MockSocialMedia.Models
         public string Content { get; set; }
         public int? Likes { get; set; }
         public string Poster { get; set; }
+        public DateTime? Date { get; set; }
 
         public virtual AspNetUser PosterNavigation { get; set; }
     }

@@ -156,6 +156,8 @@ namespace MockSocialMedia.Models
             {
                 entity.Property(e => e.Content).HasMaxLength(280);
 
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
                 entity.Property(e => e.Poster).HasMaxLength(450);
 
                 entity.HasOne(d => d.PosterNavigation)

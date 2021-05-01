@@ -30,6 +30,11 @@ namespace MockSocialMedia.Controllers
             List<string> followedUserIds = _context.FollowedUsers.Where(x => x.FollowingUser == currentUser).Select(x => x.UserToFollow).ToList();
             yourHomeFeed = _context.Posts.Where(x => followedUserIds.Contains(x.Poster)).ToList();
 
+            //Adds your own posts into the feed, sorted by datetime
+            List<Post> yourPosts = _context.Posts.Where(x => x.Poster == currentUser).ToList();
+            yourHomeFeed.AddRange(yourPosts);
+            yourHomeFeed = yourHomeFeed.OrderBy(x => x.Date).Reverse().ToList();
+
             return View(yourHomeFeed);
         }
 

@@ -39,6 +39,7 @@ namespace MockSocialMedia.Controllers
             p.Content = Content;
             p.Likes = 0;
             p.Poster = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            p.Date = DateTime.Now;
 
             _context.Posts.Add(p);
             await _context.SaveChangesAsync();

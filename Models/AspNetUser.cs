@@ -15,6 +15,7 @@ namespace MockSocialMedia.Models
             AspNetUserTokens = new HashSet<AspNetUserToken>();
             FollowedUserFollowingUserNavigations = new HashSet<FollowedUser>();
             FollowedUserUserToFollowNavigations = new HashSet<FollowedUser>();
+            LikedPosts = new HashSet<LikedPost>();
             Posts = new HashSet<Post>();
         }
 
@@ -40,6 +41,7 @@ namespace MockSocialMedia.Models
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual ICollection<FollowedUser> FollowedUserFollowingUserNavigations { get; set; }
         public virtual ICollection<FollowedUser> FollowedUserUserToFollowNavigations { get; set; }
+        public virtual ICollection<LikedPost> LikedPosts { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
     }
 }

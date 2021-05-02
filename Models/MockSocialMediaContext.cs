@@ -25,6 +25,7 @@ namespace MockSocialMedia.Models
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual DbSet<FollowedUser> FollowedUsers { get; set; }
+        public virtual DbSet<LikedPost> LikedPosts { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -150,6 +151,23 @@ namespace MockSocialMedia.Models
                     .WithMany(p => p.FollowedUserUserToFollowNavigations)
                     .HasForeignKey(d => d.UserToFollow)
                     .HasConstraintName("FK__FollowedU__UserT__70DDC3D8");
+            });
+
+            modelBuilder.Entity<LikedPost>(entity =>
+            {
+                entity.Property(e => e.LikedPost1).HasColumnName("LikedPost");
+
+                entity.Property(e => e.LikingUser).HasMaxLength(450);
+
+                entity.HasOne(d => d.LikedPost1Navigation)
+                    .WithMany(p => p.LikedPosts)
+                    .HasForeignKey(d => d.LikedPost1)
+                    .HasConstraintName("FK__LikedPost__Liked__03F0984C");
+
+                entity.HasOne(d => d.LikingUserNavigation)
+                    .WithMany(p => p.LikedPosts)
+                    .HasForeignKey(d => d.LikingUser)
+                    .HasConstraintName("FK__LikedPost__Likin__02FC7413");
             });
 
             modelBuilder.Entity<Post>(entity =>
